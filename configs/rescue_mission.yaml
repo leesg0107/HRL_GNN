@@ -1,0 +1,36 @@
+environment:
+  type: rescue
+  width: 800
+  height: 600
+  grid_size: 20
+
+agents:
+  - type: drone
+    policy: hierarchical_policy
+    params:
+      pos: [100, 100]
+      id: 0
+      speed: 2
+      view_range: 150
+    policy_params:
+      state_dim: 64
+      action_dim: 2
+      
+  - type: wheeled
+    policy: ppo_policy
+    params:
+      pos: [100, 160]
+      id: 1
+      speed: 1
+      view_range: 100
+    policy_params:
+      state_dim: 64
+      action_dim: 2
+
+  - type: observer
+    policy: null
+    params:
+      pos: [100, 300]
+      id: 2
+      view_range: 200
+      fov: 1.5708  # 90도 
